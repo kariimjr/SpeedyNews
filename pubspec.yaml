@@ -43,6 +43,7 @@ dependencies:
   cloud_firestore:
   carousel_slider:
   flutter_svg:
+  lottie:
 
 
 

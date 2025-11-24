@@ -14,11 +14,12 @@ abstract class AppTheme {
     ),
 
     appBarTheme: AppBarTheme(
-      backgroundColor: AppColors.primaryColor,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
 
       centerTitle: true,
       iconTheme: IconThemeData(color: AppColors.mainColor),
-      titleTextStyle: TextStyle(color: AppColors.mainColor,fontSize: 18),
+      titleTextStyle: TextStyle(color: AppColors.mainColor,fontSize: 24,fontWeight: FontWeight.bold),
 
     ),
 

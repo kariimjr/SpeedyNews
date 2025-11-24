@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/api/models/news_response.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/widgets/custom_btn.dart';
 
 class NewsWidget extends StatefulWidget {
   const NewsWidget({super.key, required this.article});
@@ -21,6 +22,7 @@ class _NewsWidgetState extends State<NewsWidget> {
     return InkWell(
       onTap: () {
         showModalBottomSheet(
+          backgroundColor: AppColors.accentColor,
           isScrollControlled: true,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadiusGeometry.circular(16),
@@ -45,37 +47,18 @@ class _NewsWidgetState extends State<NewsWidget> {
                       textAlign: TextAlign.justify,
                       widget.article.content ?? "",
                       style: context.appTextTheme.bodySmall?.copyWith(
-                        color: AppColors.primaryColor,
+                        color: AppColors.secondaryColor,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        final url = Uri.tryParse(widget.article.url ?? '');
-                        if (url != null) {
-                          if (!await launchUrl(url)) {
-                            throw Exception('Could not launch $url');
-                          }
-                        }
-                      },
-                      style: ButtonStyle(
-                        fixedSize: WidgetStatePropertyAll(
-                          Size(380, 56),
-                        ),
-                        shape: WidgetStatePropertyAll(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadiusGeometry.circular(16),
-                          ),
-                        ),
-                        backgroundColor: WidgetStatePropertyAll(
-                          AppColors.primaryColor,
-                        ),
-                      ),
-                      child: Text(
-                        "View Full Article",
-                        style: context.appTextTheme.bodyMedium,
-                      ),
-                    ),
+                    CustomBut(text: "View Full Article",isLoading: false,onPressed: ()async{
+                      final url = Uri.tryParse(widget.article.url ?? '');
+                      if (url != null) {
+                        if (!await launchUrl(url)) {
+                      throw Exception('Could not launch $url');
+                      }
+                    }
+                    },),
                   ],
                 ),
               ),
@@ -90,8 +73,9 @@ class _NewsWidgetState extends State<NewsWidget> {
         padding: const EdgeInsets.all(8),
         margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
+
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors.secondaryColor),
+          border: Border.all(color: AppColors.mainColor),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,7 +118,7 @@ class _NewsWidgetState extends State<NewsWidget> {
                   child: Text(
                     "By:" + (widget.article.author ?? ""),
                     style: TextStyle(
-                      color: AppColors.thirdColor,
+                      color: AppColors.mainColor.withAlpha(90),
                       fontWeight: FontWeight.w500,
                       fontSize: 16,
                     ),
@@ -143,7 +127,7 @@ class _NewsWidgetState extends State<NewsWidget> {
                 Text(
                   (widget.article.publishedAt ?? "").substring(0, 10),
                   style: TextStyle(
-                    color: AppColors.thirdColor,
+                    color: AppColors.mainColor.withAlpha(90),
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
                   ),

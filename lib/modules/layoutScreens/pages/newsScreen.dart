@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:newsapp/modules/provider/newsProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -16,8 +17,12 @@ class NewsScreenV2 extends StatelessWidget {
         var articles = newsProvider.articles;
 
         if (sources.isEmpty) {
-          return const Center(
-            child: CircularProgressIndicator(color: Colors.white),
+          return  Center(
+            child: Column(
+              children: [
+                Lottie.asset("assets/json/Network.json"),
+              ],
+            ),
           );
         }
         return Column(
@@ -28,10 +33,12 @@ class NewsScreenV2 extends StatelessWidget {
               child: Container(
                 color: AppColors.primaryColor,
                 child: TabBar(
+                  
                   isScrollable: true,
-                  labelColor: Colors.white,
+                  padding: EdgeInsets.all(0),
+                  labelColor: AppColors.mainColor,
                   unselectedLabelColor: Colors.white70,
-                  indicatorColor: Colors.white,
+                  indicatorColor: AppColors.mainColor,
                   onTap: (index) {
                     newsProvider.setSource(sources[index]);
                   },
@@ -41,8 +48,8 @@ class NewsScreenV2 extends StatelessWidget {
             ),
             Expanded(
               child: articles.isEmpty
-                  ? const Center(
-                      child: CircularProgressIndicator(color: Colors.white),
+                  ?  Center(
+                      child: Lottie.asset("assets/json/Network.json"),
                     )
                   : ListView.builder(
                       itemCount: articles.length,

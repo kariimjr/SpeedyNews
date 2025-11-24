@@ -6,7 +6,7 @@ class ApiManager{
     BaseOptions(
       followRedirects: false,
       baseUrl: "https://newsapi.org/v2/",
-      headers: {"x-api-key":"56396fb4e37f459bb6741043d73a25cf"},
+      headers: {"x-api-key":"a2be006fe2f24c0b84866f79056b5f5f"},
     )
 
   );
@@ -46,4 +46,5 @@ class ApiManager{
       rethrow;
     }
   }
+
 }

@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -33,13 +34,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   spacing: 17,
                   children: [
-                    Image.asset(
-                      "assets/logo/SpeedyNewsY.png",
-                      height: 200,
-                      width: 207,
-                      fit: BoxFit.contain,
-                    ),
-                    Spacer(),
+                      FadeInDown(
+                        duration: Duration(seconds: 2),
+                        child: Image.asset(
+                          "assets/logo/SpeedyNewsLogoTextY.png",
+                          height: 300,
+                          width: 307,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
                     Column(
                       spacing: 22,
                       children: [
@@ -160,36 +163,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 100,
-                          child: Divider(
-                            thickness: 1,
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
-                        Text(
-                          "       OR     ",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        SizedBox(
-                          width: 100,
-                          child: Divider(
-                            thickness: 1,
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                    CustomBut(
-                      onPressed: () {
-                        authProvider.Login(context);
-                      },
-                      text: "Login With Google",
-                      isLoading: false,
                     ),
                     Spacer(),
                   ],

@@ -70,7 +70,8 @@ class _catagoriesCardState extends State<catagoriesCard> {
                         },
                         child: Icon(
                           Icons.arrow_forward_rounded,
-                          color: AppColors.secondaryColor,
+                          color: AppColors.mainColor,
+                          size: 36,
                         ),
                       ),
                     ],

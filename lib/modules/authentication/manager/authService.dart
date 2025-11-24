@@ -12,14 +12,8 @@ class authService {
     try {
       final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: Email, password: Password);
-
-      // Update display name correctly
       await credential.user?.updateDisplayName(Name);
-
-      // Send verification email
       await credential.user?.sendEmailVerification();
-
-      // Reload user to refresh data
       await credential.user?.reload();
 
       return credential;
@@ -62,6 +56,7 @@ class authService {
   static Future<void> ForgetPassword({required String Email}) async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: Email);
+
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         throw 'Invalid Email or Password.';
