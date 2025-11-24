@@ -4,16 +4,22 @@ import 'package:newsapp/core/extensions/extension.dart';
 import '../../../core/constant/catageories/catageories.dart';
 import '../../../core/theme/app_colors.dart';
 
-class catagoriesCard extends StatelessWidget {
-  int index;
-   catagoriesCard({super.key, required this.index});
+class catagoriesCard extends StatefulWidget {
+  final Catageories category;
+
+  final Function(Catageories value) onNavigate;
+
+  catagoriesCard({super.key, required this.onNavigate, required this.category});
 
   @override
+  State<catagoriesCard> createState() => _catagoriesCardState();
+}
+
+class _catagoriesCardState extends State<catagoriesCard> {
+  @override
   Widget build(BuildContext context) {
+
     return Container(
-
-
-
       height: 200,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -25,7 +31,7 @@ class catagoriesCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadiusGeometry.circular(16),
-            child: Image.asset(Catageories.CatageoriesInfo[index].images),
+            child: Image.asset(widget.category.images),
           ),
           Expanded(
             child: Padding(
@@ -38,19 +44,17 @@ class catagoriesCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        Catageories.CatageoriesInfo[index].name,
+                        widget.category.name,
                         style: context.appTextTheme.titleLarge?.copyWith(
                           color: AppColors.primaryColor,
                         ),
                       ),
                       ElevatedButton(
-
                         style: ButtonStyle(
                           minimumSize: WidgetStatePropertyAll(Size(100, 70)),
                           iconSize: WidgetStatePropertyAll(25),
                           shape: WidgetStatePropertyAll(
                             RoundedRectangleBorder(
-
                               borderRadius: BorderRadiusGeometry.circular(16),
                             ),
                           ),
@@ -58,7 +62,12 @@ class catagoriesCard extends StatelessWidget {
                             context.appColorTheme.primary,
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          widget.onNavigate(widget.category);
+                          setState(() {
+
+                          });
+                        },
                         child: Icon(
                           Icons.arrow_forward_rounded,
                           color: Colors.white,
@@ -72,7 +81,6 @@ class catagoriesCard extends StatelessWidget {
           ),
         ],
       ),
-    )
-    ;
+    );
   }
 }

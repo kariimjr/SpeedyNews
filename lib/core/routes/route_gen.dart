@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:newsapp/modules/homeScreen/pages/homeScreen.dart';
 import 'package:newsapp/modules/splashScreen/pages/splashScreen.dart';
 
+import '../../modules/layoutScreens/pages/layoutScreen.dart';
 import 'app_routes_name.dart';
 //
 class RouteGen {
@@ -16,12 +16,13 @@ class RouteGen {
           },
         );
 
-      case RouteName.Home:
+      case RouteName.Layout:
         return PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) {
-            return homeScreen();
+            return LayoutScreen();
           },
         );
+
 
       default:
         return PageRouteBuilder(
