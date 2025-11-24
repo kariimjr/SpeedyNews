@@ -37,6 +37,7 @@ dependencies:
   animate_do:
   dio:
   cached_network_image:
+  url_launcher:
 
 
 

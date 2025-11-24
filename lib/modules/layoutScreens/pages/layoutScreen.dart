@@ -20,6 +20,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primaryColor,
       drawer: Drawer(
         backgroundColor: Colors.black,
         child: Column(

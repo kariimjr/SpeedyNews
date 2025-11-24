@@ -24,7 +24,7 @@ class _catagoriesCardState extends State<catagoriesCard> {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: Colors.white,
+        color: AppColors.secondaryColor,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -59,7 +59,7 @@ class _catagoriesCardState extends State<catagoriesCard> {
                             ),
                           ),
                           backgroundColor: WidgetStatePropertyAll(
-                            context.appColorTheme.primary,
+                           AppColors.primaryColor,
                           ),
                         ),
                         onPressed: () {
@@ -70,7 +70,7 @@ class _catagoriesCardState extends State<catagoriesCard> {
                         },
                         child: Icon(
                           Icons.arrow_forward_rounded,
-                          color: Colors.white,
+                          color: AppColors.secondaryColor,
                         ),
                       ),
                     ],
