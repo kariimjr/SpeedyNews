@@ -13,6 +13,15 @@ abstract class AppTheme {
       surface: AppColors.secondaryColor,
     ),
 
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.primaryColor,
+
+      centerTitle: true,
+      iconTheme: IconThemeData(color: AppColors.mainColor),
+      titleTextStyle: TextStyle(color: AppColors.mainColor,fontSize: 18),
+
+    ),
+
     bottomSheetTheme: BottomSheetThemeData(
       backgroundColor: AppColors.secondaryColor,
 
@@ -31,6 +40,32 @@ abstract class AppTheme {
       // elevation: 1,
       type: BottomNavigationBarType.fixed,
       unselectedItemColor: Colors.white,
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      focusColor: AppColors.accentColor,
+      fillColor: AppColors.accentColor,
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(width: 1, color: Color(0xff282A28)),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(width: 1, color: Colors.redAccent),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      border: OutlineInputBorder(
+        borderSide: BorderSide(width: 1, color: Color(0xff282A28)),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(width: 1, color: Color(0xff282A28)),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(width: 1, color: Color(0xff282A28)),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      hintStyle: TextStyle(fontSize: 16, color: Colors.white),
     ),
 
     textTheme: TextTheme(

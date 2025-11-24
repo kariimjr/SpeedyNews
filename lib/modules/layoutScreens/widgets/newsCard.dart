@@ -32,6 +32,7 @@ class _NewsWidgetState extends State<NewsWidget> {
               child: SizedBox(
                 height: 500,
                 child: Column(
+                  spacing: 12,
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadiusGeometry.circular(8),
@@ -49,17 +50,23 @@ class _NewsWidgetState extends State<NewsWidget> {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () async{
-                          final url = Uri.tryParse(widget.article.url ?? '');
-                          if (url != null) {
-                            if (!await launchUrl(url)) {
-                              throw Exception('Could not launch $url');
-                            }
+                      onPressed: () async {
+                        final url = Uri.tryParse(widget.article.url ?? '');
+                        if (url != null) {
+                          if (!await launchUrl(url)) {
+                            throw Exception('Could not launch $url');
                           }
-
-
+                        }
                       },
                       style: ButtonStyle(
+                        fixedSize: WidgetStatePropertyAll(
+                          Size(380, 56),
+                        ),
+                        shape: WidgetStatePropertyAll(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadiusGeometry.circular(16),
+                          ),
+                        ),
                         backgroundColor: WidgetStatePropertyAll(
                           AppColors.primaryColor,
                         ),

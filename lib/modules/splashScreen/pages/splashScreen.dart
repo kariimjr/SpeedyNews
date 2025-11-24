@@ -19,13 +19,13 @@ class SplashScreen extends StatelessWidget {
               FadeInUp(
                 duration: Duration(seconds: 2),
                 onFinish: (direction) {
-                  return Navigator.pushReplacementNamed(context, RouteName.Layout);
+                  return Navigator.pushReplacementNamed(context, RouteName.Login);
                 },
                 child: Image.asset(
-                  "assets/logo/Logo.png",
-                  height: 174,
-                  width: 107,
-                  fit: BoxFit.cover,
+                  "assets/logo/SpeedyNewsY.png",
+                  height: 274,
+                  width: 207,
+                  fit: BoxFit.contain,
                 ),
               ),
             ],

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "166868174034",
+    "project_id": "speedynewss",
+    "storage_bucket": "speedynewss.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:166868174034:android:cf41adaa5bd22c8731990b",
+        "android_client_info": {
+          "package_name": "com.example.newsapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbIZVsgNEa4trOX03aPmfE0u1oqLLejT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
