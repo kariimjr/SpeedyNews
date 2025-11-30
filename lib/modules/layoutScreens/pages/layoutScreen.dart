@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +5,6 @@ import 'package:newsapp/core/routes/app_routes_name.dart';
 import 'package:provider/provider.dart';
 import '../../../core/constant/catageories/catageories.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../core/widgets/custom_btn.dart';
 import '../../provider/newsProvider.dart';
 import 'newsScreen.dart';
 import '../widgets/catagorisCard.dart';
@@ -48,7 +46,10 @@ class _LayoutScreenV2State extends State<LayoutScreenV2> {
                             ),
                             Expanded(
                               child: Text(
-                                FirebaseAuth.instance.currentUser?.displayName ??
+                                FirebaseAuth
+                                        .instance
+                                        .currentUser
+                                        ?.displayName ??
                                     "User",
                                 style: TextStyle(
                                   color: AppColors.primaryColor,
@@ -57,7 +58,10 @@ class _LayoutScreenV2State extends State<LayoutScreenV2> {
                               ),
                             ),
                             FirebaseAuth.instance.currentUser!.emailVerified
-                                ? Icon(Icons.verified_rounded,color: Colors.blue,)
+                                ? Icon(
+                                    Icons.verified_rounded,
+                                    color: Colors.blue,
+                                  )
                                 : Icon(Icons.verified_outlined),
                           ],
                         ),
@@ -155,21 +159,43 @@ class _LayoutScreenV2State extends State<LayoutScreenV2> {
             ),
           ),
           appBar: AppBar(
-            actions: [
-              IconButton(
-                onPressed: () {
-                  isSearching = true;
-                },
-                icon: Icon(Icons.search_rounded),
-              ),
-            ],
-            title: Image.asset(
+            title: isSearching
+                ? SizedBox(
+              height:50 ,
+                  child: TextField(
+                                autofocus: true,
+                                style: TextStyle(color: Colors.white,fontSize: 18),
+                                decoration: InputDecoration(
+                  hintText: 'Search...',
+                  hintStyle: TextStyle(color: Colors.white70),
+                  border: InputBorder.none,
+                                ),
+                                onChanged: (query) {
+                  newsProvider.searchNews(query);
+                                },
+                              ),
+                )
+                : Image.asset(
               "assets/logo/SpeedyNewsLogoTextY.png",
               fit: BoxFit.contain,
               width: 150,
               height: 150,
             ),
+            actions: [
+              IconButton(
+                icon: Icon(isSearching ? Icons.close : Icons.search_rounded),
+                onPressed: () {
+                  setState(() {
+                    isSearching = !isSearching;
+                    if (!isSearching) {
+                      newsProvider.resetSearch();
+                    }
+                  });
+                },
+              ),
+            ],
           ),
+
           body: selectedCategory == null
               ? Padding(
                   padding: const EdgeInsets.all(15),

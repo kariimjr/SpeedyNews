@@ -7,6 +7,7 @@ class NewsProvider with ChangeNotifier {
   Catageories? _selectedCategory;
   Source? _selectedSource;
   List<Source> _sources = [];
+  List<Articles> _allArticles = []; // Keep all articles
   List<Articles> _articles = [];
 
   Catageories? get selectedCategory => _selectedCategory;
@@ -19,8 +20,10 @@ class NewsProvider with ChangeNotifier {
     _sources = await ApiManager.getSources(category.id);
     _selectedSource = _sources.isNotEmpty ? _sources.first : null;
     if (_selectedSource != null) {
-      _articles = await ApiManager.getNews(_selectedSource!.id!);
+      _allArticles = await ApiManager.getNews(_selectedSource!.id!);
+      _articles = List.from(_allArticles); // Initially show all
     } else {
+      _allArticles = [];
       _articles = [];
     }
     notifyListeners();
@@ -28,7 +31,8 @@ class NewsProvider with ChangeNotifier {
 
   Future<void> setSource(Source source) async {
     _selectedSource = source;
-    _articles = await ApiManager.getNews(source.id!);
+    _allArticles = await ApiManager.getNews(source.id!);
+    _articles = List.from(_allArticles);
     notifyListeners();
   }
 
@@ -36,7 +40,25 @@ class NewsProvider with ChangeNotifier {
     _selectedCategory = null;
     _selectedSource = null;
     _sources = [];
+    _allArticles = [];
     _articles = [];
+    notifyListeners();
+  }
+
+  void searchNews(String query) {
+    if (query.isEmpty) {
+      _articles = List.from(_allArticles); // Reset to all articles
+    } else {
+      _articles = _allArticles
+          .where((article) =>
+          article.title!.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    }
+    notifyListeners();
+  }
+
+  void resetSearch() {
+    _articles = List.from(_allArticles);
     notifyListeners();
   }
 }
