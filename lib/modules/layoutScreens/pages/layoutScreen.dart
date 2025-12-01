@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:newsapp/core/routes/app_routes_name.dart';
 import 'package:provider/provider.dart';
 import '../../../core/constant/catageories/catageories.dart';
@@ -118,6 +119,14 @@ class _LayoutScreenV2State extends State<LayoutScreenV2> {
                     width: 300,
                     height: 50,
                     decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.redAccent.withOpacity(0.6),
+                          blurRadius: 15,
+                          spreadRadius: 3,
+                          offset: Offset(1, 2),
+                        )
+                      ],
                       color: Colors.redAccent,
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -161,25 +170,39 @@ class _LayoutScreenV2State extends State<LayoutScreenV2> {
           appBar: AppBar(
             title: isSearching
                 ? SizedBox(
-              height:50 ,
-                  child: TextField(
-                                autofocus: true,
-                                style: TextStyle(color: Colors.white,fontSize: 18),
-                                decoration: InputDecoration(
-                  hintText: 'Search...',
-                  hintStyle: TextStyle(color: Colors.white70),
-                  border: InputBorder.none,
-                                ),
-                                onChanged: (query) {
-                  newsProvider.searchNews(query);
-                                },
-                              ),
-                )
+              height: 50,
+              child: TypeAheadField(
+                suggestionsCallback: (query) async {
+                  return newsProvider.getSuggestions(query);
+                },
+                itemBuilder: (context, suggestion) {
+                  return ListTile(
+                    title: Text(suggestion, style: TextStyle(color: Colors.black,fontSize: 20)),
+                  );
+                },
+                onSelected: (suggestion) {
+                  newsProvider.searchNews(suggestion);
+                },
+                builder: (context, controller, focusNode) {
+                  return SizedBox(
+                    height: 24,
+                    child: TextField(
+                      controller: controller,
+                      focusNode: focusNode,
+                      style: TextStyle(color: Colors.white,fontSize: 20),
+                      decoration: InputDecoration(
+                        hintText: 'Search...',
+                        hintStyle: TextStyle(color: Colors.white70),
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            )
                 : Image.asset(
               "assets/logo/SpeedyNewsLogoTextY.png",
-              fit: BoxFit.contain,
               width: 150,
-              height: 150,
             ),
             actions: [
               IconButton(
