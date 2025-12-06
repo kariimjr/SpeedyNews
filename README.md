@@ -6,7 +6,7 @@ While the app integrates real-time news data and Firebase authentication, the co
 
 ## 🎯 Main Objective
 
-[cite_start]The main objective of this application is to design and implement a modern, simple, and efficient user interface that allows users to browse news comfortably[cite: 31]. The UI/UX was prioritized to ensure:
+The main objective of this application is to design and implement a modern, simple, and efficient user interface that allows users to browse news comfortably. The UI/UX was prioritized to ensure:
 * **Fast and smooth interactions** 
 * **Clear layout hierarchy** 
 * **Comfortable reading environment** 
